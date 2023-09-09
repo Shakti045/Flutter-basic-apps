@@ -7,46 +7,49 @@ class ExpanceList extends StatelessWidget {
   final void Function(Expence expence,int index) removeExpance;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: expancelist.length,
-        itemBuilder: (BuildContext ctx, int index) {
-          return Dismissible(
-            key: ValueKey(expancelist[index]),
-            onDismissed: (direction) {
-              removeExpance(expancelist[index],index);
-            },
-            child: Card(
-              margin: const EdgeInsets.all(10),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(expancelist[index].title),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(expancelist[index].amount.toStringAsFixed(2)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            expancelist[index].categoryIcon,
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Text(expancelist[index].createdat)
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+    return SizedBox(
+          height: 400,
+      child: ListView.builder(
+          itemCount: expancelist.length,
+          itemBuilder: (BuildContext ctx, int index) {
+            return Dismissible(
+              key: ValueKey(expancelist[index]),
+              onDismissed: (direction) {
+                removeExpance(expancelist[index],index);
+              },
+              child: Card(
+                margin: const EdgeInsets.all(10),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(expancelist[index].title),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(expancelist[index].amount.toStringAsFixed(2)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              expancelist[index].categoryIcon,
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Text(expancelist[index].createdat)
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        });
+            );
+          }),
+    );
   }
 }

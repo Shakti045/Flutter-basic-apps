@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/data/expence_list.dart';
 import 'package:expense_tracker/expancelist.dart';
 import 'package:expense_tracker/create_expance.dart';
+import 'package:expense_tracker/expance_chart.dart';
 
 class ExpenceTeackerApp extends StatefulWidget {
   const ExpenceTeackerApp({super.key});
@@ -42,6 +43,8 @@ class _ExpenceTeackerAppState extends State<ExpenceTeackerApp> {
 
   void _showbottomModal() {
     showModalBottomSheet(
+        isScrollControlled: true,
+        useSafeArea: true,
         context: context,
         builder: (BuildContext ctx) {
           return CreateExpance(setAllexpences);
@@ -50,6 +53,7 @@ class _ExpenceTeackerAppState extends State<ExpenceTeackerApp> {
 
   @override
   Widget build(BuildContext context) {
+     final width=MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -65,11 +69,19 @@ class _ExpenceTeackerAppState extends State<ExpenceTeackerApp> {
         ],
         backgroundColor: const Color.fromARGB(255, 44, 2, 117),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(child: ExpanceList(allexpences, removeExpance)),
-        ],
+      body: width<=600?SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+                height: 250, child: Expanded(child: ExpanceChart(allexpences))),
+            ExpanceList(allexpences, removeExpance)
+          ],
+        ),
+      ):Row(
+         children: [
+            Expanded(child: SizedBox(height: 250, child: Expanded(child: ExpanceChart(allexpences)))),
+            Expanded(child: ExpanceList(allexpences, removeExpance)) 
+          ],
       ),
     );
   }

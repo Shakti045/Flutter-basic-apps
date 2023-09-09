@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:expense_tracker/model/expencemodel.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreateExpance extends StatefulWidget {
@@ -32,11 +35,25 @@ class _CreateExpanceForm extends State<CreateExpance> {
     super.dispose();
   }
 
-  void _createExpence() {
-    if (_titlecontroller.text.isEmpty ||
-        choosendate == null ||
-        _expenceamountcontroller.text.isEmpty ||
-        double.parse(_expenceamountcontroller.text) < 0) {
+  void _showalert() {
+    if (Platform.isIOS) {
+      showCupertinoDialog(
+          context: context,
+          builder: (BuildContext ctx) {
+            return CupertinoAlertDialog(
+              title: const Text('Invalid input'),
+              content: const Text(
+                  'Please make sure a valid title, amount, date and category was entered.'),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('ok'))
+              ],
+            );
+          });
+    } else {
       showDialog(
           context: context,
           builder: (BuildContext ctx) {
@@ -53,6 +70,15 @@ class _CreateExpanceForm extends State<CreateExpance> {
               ],
             );
           });
+    }
+  }
+
+  void _createExpence() {
+    if (_titlecontroller.text.isEmpty ||
+        choosendate == null ||
+        _expenceamountcontroller.text.isEmpty ||
+        double.parse(_expenceamountcontroller.text) < 0) {
+      _showalert();
       return;
     }
     widget.setAllexpences(Expence(
@@ -64,8 +90,11 @@ class _CreateExpanceForm extends State<CreateExpance> {
 
   @override
   Widget build(BuildContext context) {
+    final keyboardspace = MediaQuery.of(context).viewInsets.bottom;
+    final height = MediaQuery.of(context).size.height;
+    // it gives the keyboard height overlapped at bottom
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
+      padding: EdgeInsets.fromLTRB(16, 16, 16, keyboardspace + 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
