@@ -64,10 +64,8 @@ class _ExpenceTeackerAppState extends State<ExpenceTeackerApp> {
           IconButton(
             onPressed: _showbottomModal,
             icon: const Icon(Icons.add),
-            style: IconButton.styleFrom(foregroundColor: Colors.white),
           )
         ],
-        backgroundColor: const Color.fromARGB(255, 44, 2, 117),
       ),
       body: width<=600?SingleChildScrollView(
         child: Column(

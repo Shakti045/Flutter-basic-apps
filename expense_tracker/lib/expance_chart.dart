@@ -37,12 +37,12 @@ class ExpanceChart extends StatelessWidget {
                 heightFactor: categorydata.containsKey(category)
                     ? categorydata[category]! / highestprice
                     : 0,
-                child: const DecoratedBox(
+                child:  DecoratedBox(
                   decoration: BoxDecoration(
-                      color: Colors.purple,
+                      color:Theme.of(context).colorScheme.primary,
                       shape: BoxShape.rectangle,
                       borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(5))),
+                         const BorderRadius.vertical(top: Radius.circular(5))),
                 ),
               ),
             ),

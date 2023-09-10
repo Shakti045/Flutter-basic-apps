@@ -24,7 +24,7 @@ class ExpanceList extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(expancelist[index].title),
+                      Text(expancelist[index].title,style:TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer),),
                       const SizedBox(
                         height: 8,
                       ),

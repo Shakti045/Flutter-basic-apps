@@ -36,7 +36,8 @@ class _CreateExpanceForm extends State<CreateExpance> {
   }
 
   void _showalert() {
-    if (Platform.isIOS) {
+    if (Platform.isIOS
+    ) {
       showCupertinoDialog(
           context: context,
           builder: (BuildContext ctx) {
