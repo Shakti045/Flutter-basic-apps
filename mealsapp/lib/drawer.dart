@@ -4,15 +4,27 @@ import 'package:mealsapp/screens/filter_screen.dart';
 class SideDrawer extends StatelessWidget {
   const SideDrawer(this.setfilters, {super.key});
 
-  final void Function(Map<String, bool>) setfilters;
-  void navigationhelper(BuildContext context) async {
+  // final void Function(Map<String, bool>) setfilters;
+  // void navigationhelper(BuildContext context) async {
+  //   Navigator.of(context).pop();
+  //   final Map<String, bool> filters = await Navigator.of(context)
+  //       .push(MaterialPageRoute(builder: (BuildContext context) {
+  //     return const FilterScreen();
+  //   }));
+  //   setfilters(filters);
+  // }
+
+
+    final void Function(Map<String, bool>) setfilters;
+    void navigationhelper(BuildContext context)  {
     Navigator.of(context).pop();
-    final Map<String, bool> filters = await Navigator.of(context)
+   Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
       return const FilterScreen();
     }));
-    setfilters(filters);
+   
   }
+
 
   @override
   Widget build(BuildContext context) {

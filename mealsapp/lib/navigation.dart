@@ -63,7 +63,7 @@ class _TabState extends ConsumerState<TabNavigator> {
       ),
       drawer: SideDrawer(setfilters),
       body: tabindex == 0
-          ? HomeScreen(setfavouritemeals, filters)
+          ? HomeScreen(setfavouritemeals)
           : CategoryScreen(
               title: 'My Favourites',
               setfavouritemeals: setfavouritemeals,
